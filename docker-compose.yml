@@ -6,4 +6,4 @@ services:
     env_file:
       - docker.env
     ports:
-      "5435:5432"
+      - "5435:5432"
