@@ -1,0 +1,9 @@
+service:
+  woodshed_pg:
+    container_name: woodshed_pg
+    image: postgres:latest
+    restart: always
+    env_file:
+      - docker.env
+    ports:
+      "5435:5432"
