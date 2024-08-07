@@ -27,11 +27,12 @@ export class ProductService {
     if (!product) {
       throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
     }
+    return product;
   }
 
   async deleteProducts() {
     const deleteResponse = await this.productRepository.delete({});
-    if (!deleteResponse) {
+    if (!deleteResponse.affected) {
       throw new HttpException('Something new Error', HttpStatus.BAD_REQUEST);
     }
     return 'Deleted all products';
@@ -39,7 +40,7 @@ export class ProductService {
 
   async deleteProductById(id: string) {
     const deleteResponse = await this.productRepository.delete({ id });
-    if (!deleteResponse) {
+    if (!deleteResponse.affected) {
       throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
     }
     return 'Deleted a product';
@@ -51,5 +52,6 @@ export class ProductService {
     if (!updateProduct) {
       throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
     }
+    return updateProduct;
   }
 }
